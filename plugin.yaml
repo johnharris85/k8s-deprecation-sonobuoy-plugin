@@ -1,0 +1,12 @@
+sonobuoy-config:
+  driver: Job        # Job or DaemonSet. Job runs once per run, Daemonset runs on every node per run.
+  plugin-name: deprecation-tester  # The name of the plugin
+  result-type: deprecation-tester   # The name of the "result type." Usually the name of the plugin.
+spec:                # A kubernetes container spec
+  image: johnharris85/sonobuoy-deprecation-plugin:v0.1
+  imagePullPolicy: Always
+  name: deprecation-tester
+  volumeMounts:
+  - mountPath: /tmp/results
+    name: results
+    readOnly: false
